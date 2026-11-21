@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <title>Miguel Luner Clock Studio</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand"><div class="brand-mark">ML</div><div><strong>MIGUEL LUNER</strong><span>CLOCK STUDIO</span></div></div>
+      <nav class="nav">
+        <button class="nav-item active" data-page="clock"><span>◷</span> Clock</button>
+        <button class="nav-item" data-page="alarms"><span>◉</span> Alarms <b id="alarmCount">0</b></button>
+        <button class="nav-item" data-page="stopwatch"><span>◴</span> Stopwatch</button>
+        <button class="nav-item" data-page="timer"><span>◷</span> Timer</button>
+        <button class="nav-item" data-page="world"><span>◎</span> World clock</button>
+      </nav>
+      <div class="sidebar-bottom"><div class="live-dot"></div><span>Local time · <b id="sidebarZone">Africa/Nairobi</b></span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+        <div><div class="eyebrow">TIME MANAGEMENT</div><h1 id="pageTitle">Clock</h1></div>
+        <div class="top-actions">
+          <span class="date-chip" id="headerDate"></span>
+          <button class="icon-btn" id="formatToggle" title="Switch 12/24-hour format">12H</button>
+          <button class="icon-btn" id="themeToggle" title="Toggle light/dark theme">☼</button>
+          <button class="icon-btn" id="fullscreenBtn" title="Full screen">⛶</button>
+        </div>
+      </header>
+
+      <section class="page active" id="page-clock">
+        <div class="hero-grid">
+          <div class="clock-card main-clock-card">
+            <div class="card-top"><div><span class="eyebrow">YOUR LOCAL TIME</span><h2 id="clockCity">Nairobi, Kenya</h2></div><span class="live-pill"><i></i> LIVE</span></div>
+            <div class="clock-stage" id="clockStage">
+              <div class="analog-wrap" id="analogClock" aria-label="Analog clock">
+                <div class="clock-face">
+                  <div class="clock-numerals" id="numerals"></div>
+                  <div class="hand hour-hand" id="hourHand"></div><div class="hand minute-hand" id="minuteHand"></div><div class="hand second-hand" id="secondHand"></div><div class="pin"></div>
+                </div>
+              </div>
+              <div class="digital-clock" id="digitalClock">
+                <div class="digital-time"><span id="digitalHours">00</span><span class="colon">:</span><span id="digitalMinutes">00</span><span class="seconds" id="digitalSeconds">00</span><span class="ampm" id="ampm">PM</span></div>
+                <div class="digital-date" id="digitalDate"></div>
+              </div>
+            </div>
+            <div class="clock-footer"><span id="timezoneText">EAT · UTC+03:00</span><span id="dayProgress">Day progress 0%</span></div>
+          </div>
+          <div class="side-stack">
+            <div class="info-card"><span class="eyebrow">TODAY</span><div class="date-large" id="todayNumber">21</div><div class="date-detail" id="todayName">Saturday, November 2026</div><div class="progress-track"><div id="dayProgressBar"></div></div><small>Today's time elapsed</small></div>
+            <div class="info-card next-alarm-card"><span class="eyebrow">NEXT ALARM</span><div class="next-alarm-time" id="nextAlarmTime">--:--</div><div class="date-detail" id="nextAlarmLabel">No upcoming alarms</div><button class="text-link" data-goto="alarms">Manage alarms →</button></div>
+          </div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">PERSONALISE YOUR DISPLAY</span><h2>Choose your clock</h2></div><div class="segmented"><button class="selected" data-type="digital">Digital</button><button data-type="analog">Analog</button></div></div>
+        <div class="design-grid">
+          <button class="design-card selected" data-design="digital-modern"><div class="design-preview preview-modern"><b>10:48</b><small>MON · NOV 21</small></div><strong>Modern</strong><span>Minimal digital</span></button>
+          <button class="design-card" data-design="digital-neon"><div class="design-preview preview-neon"><b>10:48</b><small>MON · NOV 21</small></div><strong>Neon</strong><span>Electric glow</span></button>
+          <button class="design-card" data-design="digital-flip"><div class="design-preview preview-flip"><b>10:48</b><small>MON · NOV 21</small></div><strong>Flip</strong><span>Retro split-flap</span></button>
+          <button class="design-card" data-design="analog-classic"><div class="design-preview preview-classic"><i></i><b>12</b><small>CLASSIC</small></div><strong>Classic</strong><span>Traditional dial</span></button>
+          <button class="design-card" data-design="analog-minimal"><div class="design-preview preview-minimal"><i></i><b>12</b><small>MINIMAL</small></div><strong>Minimal</strong><span>Clean modern face</span></button>
+          <button class="design-card" data-design="analog-midnight"><div class="design-preview preview-midnight"><i></i><b>12</b><small>MIDNIGHT</small></div><strong>Midnight</strong><span>Dark premium dial</span></button>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">QUICK ACCESS</span><h2>Time tools</h2></div></div>
+        <div class="quick-grid"><button class="quick-card" data-goto="alarms"><span>◉</span><b>Alarms</b><small>Set a wake-up time</small></button><button class="quick-card" data-goto="stopwatch"><span>◴</span><b>Stopwatch</b><small>Track elapsed time</small></button><button class="quick-card" data-goto="timer"><span>◷</span><b>Timer</b><small>Count down precisely</small></button><button class="quick-card" data-goto="world"><span>◎</span><b>World clock</b><small>Compare time zones</small></button></div>
+      </section>
+
+      <section class="page" id="page-alarms">
+        <div class="page-intro"><div><span class="eyebrow">STAY ON SCHEDULE</span><h2>Your alarms</h2><p>Create reminders for important moments throughout your day.</p></div><button class="primary-btn" id="addAlarmBtn">＋ New alarm</button></div>
+        <div class="alarm-layout"><div class="panel alarm-form-panel"><h3 id="alarmFormTitle">Create alarm</h3><form id="alarmForm"><label>Alarm time<input type="time" id="alarmTime" required value="07:00"></label><label>Label<input type="text" id="alarmLabel" maxlength="50" placeholder="e.g. Morning routine"></label><label>Repeat</label><div class="days" id="repeatDays"><button type="button" data-day="1">M</button><button type="button" data-day="2">T</button><button type="button" data-day="3">W</button><button type="button" data-day="4">T</button><button type="button" data-day="5">F</button><button type="button" data-day="6">S</button><button type="button" data-day="0">S</button></div><label>Alarm sound<select id="alarmSound"><option value="classic">Classic chime</option><option value="digital">Digital beeps</option><option value="gentle">Gentle tones</option></select></label><div class="form-actions"><button class="primary-btn" type="submit" id="saveAlarmBtn">Save alarm</button><button class="secondary-btn" type="button" id="cancelAlarmEdit" hidden>Cancel</button></div></form></div><div class="panel alarm-list-panel"><div class="panel-heading"><h3>Saved alarms</h3><span id="savedAlarmCount">0 alarms</span></div><div id="alarmList" class="alarm-list"><div class="empty-state">No alarms yet. Create your first alarm.</div></div></div></div>
+        <p class="notice">Keep this page open and your device awake for alarms to sound reliably. Browser alarms cannot guarantee playback when the browser is closed or the device is asleep.</p>
+      </section>
+
+      <section class="page" id="page-stopwatch">
+        <div class="tool-panel"><span class="eyebrow">PRECISION TIMEKEEPING</span><h2>Stopwatch</h2><div class="stopwatch-display" id="stopwatchDisplay">00:00:00<span>.00</span></div><div class="tool-buttons"><button class="primary-btn" id="swStart">Start</button><button class="secondary-btn" id="swLap" disabled>Lap</button><button class="secondary-btn" id="swReset">Reset</button></div><div class="laps-heading"><b>Lap times</b><button class="text-link" id="clearLaps">Clear laps</button></div><div id="lapList" class="lap-list"><div class="empty-state">Your lap times will appear here.</div></div></div>
+      </section>
+
+      <section class="page" id="page-timer">
+        <div class="tool-panel"><span class="eyebrow">COUNTDOWN TIMER</span><h2>Timer</h2><div class="timer-display" id="timerDisplay">00:05:00</div><div class="timer-inputs"><label>Hours<input type="number" id="timerHours" min="0" max="99" value="0"></label><label>Minutes<input type="number" id="timerMinutes" min="0" max="59" value="5"></label><label>Seconds<input type="number" id="timerSeconds" min="0" max="59" value="0"></label></div><div class="tool-buttons"><button class="primary-btn" id="timerStart">Start timer</button><button class="secondary-btn" id="timerReset">Reset</button></div><div class="timer-presets"><button data-seconds="60">1 min</button><button data-seconds="300">5 min</button><button data-seconds="600">10 min</button><button data-seconds="900">15 min</button><button data-seconds="1800">30 min</button></div><div class="progress-track timer-progress"><div id="timerProgress"></div></div></div>
+      </section>
+
+      <section class="page" id="page-world">
+        <div class="page-intro"><div><span class="eyebrow">AROUND THE GLOBE</span><h2>World clock</h2><p>Keep track of time in cities around the world.</p></div><div class="world-add"><select id="citySelect"><option value="Europe/London">London</option><option value="America/New_York">New York</option><option value="America/Los_Angeles">Los Angeles</option><option value="Asia/Tokyo">Tokyo</option><option value="Asia/Dubai">Dubai</option><option value="Asia/Kolkata">Mumbai</option><option value="Australia/Sydney">Sydney</option><option value="Africa/Cairo">Cairo</option><option value="Africa/Johannesburg">Johannesburg</option><option value="America/Sao_Paulo">São Paulo</option></select><button class="primary-btn" id="addCityBtn">＋ Add city</button></div></div>
+        <div class="world-grid" id="worldGrid"></div>
+      </section>
+
+      <footer class="footer"><span>© 2026 Miguel Luner · Clock Studio</span><span>Designed for precision and clarity</span></footer>
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="alarmModal" hidden><div class="modal"><div class="modal-icon">◉</div><span class="eyebrow">ALARM ALERT</span><h2 id="ringingTitle">It's time!</h2><p id="ringingDescription">Your alarm is ringing.</p><div class="modal-actions"><button class="secondary-btn" id="snoozeBtn">Snooze 5 min</button><button class="primary-btn" id="dismissBtn">Dismiss</button></div></div></div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
